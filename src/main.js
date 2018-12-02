@@ -18,11 +18,12 @@ var styleParams = {
 
 let canvas = new Canvas(grid, styleParams, difficulty);
 canvas.draw();
-addButton();
+addButtons();
 console.log(grid.placedMap.map(row => row.map(col => col === 0 ? '_' : col)))
 
-function addButton () {
-    document.getElementById("button").addEventListener("click", clickTest);
+function addButtons () {
+    document.getElementById("testButton").addEventListener("click", clickTest);
+    // document.getElementById("submitButton").addEventListener("click", submit);
 }
 
 function clickTest() {
@@ -38,3 +39,4 @@ function drawCross(x, y) {
     canvas.ctx.textBaseline = "middle";
     canvas.ctx.fillText("X", x + styleParams.blockSize / 2, y + styleParams.blockSize / 2);
 }
+
