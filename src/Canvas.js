@@ -1,8 +1,7 @@
 class Canvas {
-    constructor(grid, styleParams, difficulty) {
+    constructor(grid, styleParams, ) {
         this.grid = grid;
         this.styleParams = styleParams;
-        this.difficulty = difficulty;
         this.canvasElement = document.getElementById('canvas');
         this.ctx = this.canvasElement.getContext("2d");
     }
@@ -34,20 +33,12 @@ class Canvas {
             for (let c = 0; c < columns; c++) {
                 const x = c * (this.styleParams.spacing + this.styleParams.blockSize) + this.styleParams.spacing;
                 const y = r * (this.styleParams.spacing + this.styleParams.blockSize) + this.styleParams.spacing;
-                if (this.grid.answerMap[r][c] === 0) {
-                    if (Math.random() < this.difficulty/10) {
-                        this.drawBlock(this.grid.answerMap[r][c], x, y)
-                    }
-                } else {
-                    if (Math.random() < this.difficulty) {
-                        this.drawBlock(this.grid.answerMap[r][c], x, y)
-                    }
-                }
+                if (this.grid.questionMap[r][c] !== ".") {
+                        this.drawBlock(this.grid.questionMap[r][c], x, y)
+                } 
             }
         }
     }
-
-    
 
     drawGrid(rows, columns) {
         for (let c = 0; c <= columns; c++) {
@@ -101,7 +92,7 @@ class Canvas {
             case 'M':
                 this.drawBlockM(x, y);
                 break;
-            case 0:
+            case '0':
                 this.drawBlock0(x, y);
                 break;
             default:

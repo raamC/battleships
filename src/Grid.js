@@ -23,7 +23,7 @@ class Grid {
     }
 
     getCounts(set) {
-        return set.filter(s => s !== 0).length
+        return set.filter(s => s !== '.').length
     }
 
     createMap() {
@@ -36,12 +36,12 @@ class Grid {
     }
 
     getQuestionMap() {
-        var questionMap = Array(this.rows).fill().map(() => Array(this.cols).fill("."))
+        var questionMap = Array(this.rows).fill().map(() => Array(this.cols).fill('.'))
         for (let r = 0; r < this.rows; r++) {
             for (let c = 0; c < this.cols; c++) {
-                if (this.answerMap[r][c] === 0) {
+                if (this.answerMap[r][c] === ".") {
                     if (Math.random() < this.difficulty/10) {
-                        questionMap[r][c] = "0"
+                        questionMap[r][c] = '0'
                     }
                     
                 }
