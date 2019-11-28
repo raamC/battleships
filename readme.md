@@ -7,8 +7,9 @@ In main.js it is possible to configure the starting number and size of the ships
 
 ----------
 
-Written in javascript using rollup.js. This allows you to separate the js code into modules, making it much easier to read and to reason about. The separate js files live in `/src` and are bundled by rollup.js into the `bundle.js` file. This is done using a CLI and running 
+For this branch, I have ripped out rollup and all web stuff. This branch is for generating JSON files. These JSON files will be used to build and test a solver program.
 
-`rollup -c --watch --sourcemap` 
+To build this file
 
-which takes the config from `rollup.config.js`. It also sets up a watcher to watch for changes and builds a sourcemap to help with debugging.
+`cd src` then `node main`
+
