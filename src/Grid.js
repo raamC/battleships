@@ -1,22 +1,24 @@
 import {Ship} from'./Ship.js';
 
 class Grid {
-    constructor(rows, cols, shipsToPlace) {
+    constructor(rows, cols, shipsToPlace, difficulty) {
         this.rows = rows;
         this.cols = cols;
         this.shipsToPlace = shipsToPlace;
+        this.difficulty = difficulty;
         this.map = this.createMap();
         this.placedShips = this.getPlacedShips();
-        this.placedMap = this.displayShips();
+        this.answerMap = this.getAnswerMap();
+        this.questionMap = this.getQuestionMap();
     }
 
     getRowCounts() {
-        return this.placedMap.map(r => this.getCounts(r))
+        return this.answerMap.map(r => this.getCounts(r))
     }
 
     getColCounts() {
         // transposes array
-        const cols = this.placedMap[0].map((col, i) => this.placedMap.map(row => row[i]));
+        const cols = this.answerMap[0].map((col, i) => this.answerMap.map(row => row[i]));
         return cols.map(c => this.getCounts(c))
     }
 
@@ -26,6 +28,31 @@ class Grid {
 
     createMap() {
         return Array(this.rows).fill().map(() => Array(this.cols).fill(0));
+    }
+
+    getAnswerMap() {
+        var answerMap = this.displayShips();
+        return answerMap.map(row => row.map(col => col === 0 ? '.' : col))
+    }
+
+    getQuestionMap() {
+        var questionMap = Array(this.rows).fill().map(() => Array(this.cols).fill("."))
+        for (let r = 0; r < this.rows; r++) {
+            for (let c = 0; c < this.cols; c++) {
+                if (this.answerMap[r][c] === 0) {
+                    if (Math.random() < this.difficulty/10) {
+                        questionMap[r][c] = "0"
+                    }
+                    
+                }
+                else {
+                    if (Math.random() < this.difficulty) {
+                        questionMap[r][c] =  this.answerMap[r][c]
+                    }
+                }
+            }
+        }
+        return questionMap;
     }
 
     displayShips() {

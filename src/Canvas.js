@@ -34,12 +34,20 @@ class Canvas {
             for (let c = 0; c < columns; c++) {
                 const x = c * (this.styleParams.spacing + this.styleParams.blockSize) + this.styleParams.spacing;
                 const y = r * (this.styleParams.spacing + this.styleParams.blockSize) + this.styleParams.spacing;
-                if (Math.random() < this.difficulty) {
-                    this.drawBlock(this.grid.placedMap[r][c], x, y)
+                if (this.grid.answerMap[r][c] === 0) {
+                    if (Math.random() < this.difficulty/10) {
+                        this.drawBlock(this.grid.answerMap[r][c], x, y)
+                    }
+                } else {
+                    if (Math.random() < this.difficulty) {
+                        this.drawBlock(this.grid.answerMap[r][c], x, y)
+                    }
                 }
             }
         }
     }
+
+    
 
     drawGrid(rows, columns) {
         for (let c = 0; c <= columns; c++) {
