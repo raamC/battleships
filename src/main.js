@@ -159,8 +159,12 @@ class FileFactory {
     
         const fileName = `${difficulty}_${f}.json`;
         let grid = new Grid(rows, columns, shipsToPlace, difficulty);
+        let jsonGrid = JSON.stringify(grid)
+        let rowCounts = grid.getRowCounts();
+        let colCounts = grid.getColCounts();
+
     
-        fs.writeFile(fileName, JSON.stringify(grid), (err) => { if (err) throw err; });
+        fs.writeFile(fileName, JSON.stringify({jsonGrid, rowCounts, colCounts}), (err) => { if (err) throw err; });
         }
     };
 }
