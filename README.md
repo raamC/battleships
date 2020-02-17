@@ -1,4 +1,4 @@
-#Battleships
+# Battleships
 
 Generate battleships puzzles for fun.
 
